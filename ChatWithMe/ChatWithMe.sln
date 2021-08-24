@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatWithMe", "ChatWithMe\ChatWithMe.csproj", "{E85E8666-00EF-45E4-94A8-75B00E74BC5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E85E8666-00EF-45E4-94A8-75B00E74BC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85E8666-00EF-45E4-94A8-75B00E74BC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85E8666-00EF-45E4-94A8-75B00E74BC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85E8666-00EF-45E4-94A8-75B00E74BC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73702EAA-79E4-4D7E-BE40-02331ABA7850}
+	EndGlobalSection
+EndGlobal
