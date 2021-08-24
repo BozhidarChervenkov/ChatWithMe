@@ -2,11 +2,42 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    var IsUserMale = false;
+    var IsUserFemale = false;
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+
+        if (user.Gender == "Male")
+        {
+            IsUserMale = true;
+        }
+        else if (user.Gender == "Female")
+        {
+            IsUserFemale = true;
+        }
+    }
+ }
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    var user = await UserManager.GetUserAsync(User);
+
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            @user.FirstName @user.LastName
+            @if (IsUserMale)
+            {
+                <img src="~/images/maleUserIcon.jpg" style="width:30px; height:25px;">
+            }
+            else if(IsUserFemale)
+            {
+                <img src="~/images/femaleUserIcon.jpg" style="width:30px; height:25px;">
+            }
+        </a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
