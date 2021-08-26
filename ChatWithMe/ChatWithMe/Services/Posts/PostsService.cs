@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
+
     using ChatWithMe.Data;
     using ChatWithMe.Models;
     using ChatWithMe.ViewModels.Posts;
@@ -25,6 +27,7 @@
 
             var post = new Post
             {
+                TextTitle = input.TextTitle,
                 TextContent = input.TextContent,
                 CreatedOn = DateTime.Now,
                 IsDeleted = false,
@@ -36,6 +39,30 @@
             await this.context.SaveChangesAsync();
 
             return true;
+        }
+        
+        public AllPostsViewModel All()
+        {
+            var posts = this.context.Posts
+                .Where(p=> p.IsDeleted == false)
+                .Select(p => new PostInListViewModel()
+                {
+                    Id = p.Id,
+                    TextTitle = p.TextTitle,
+                    TextContent = p.TextContent,
+                    PostImage = p.PostImage,
+                    PostedByUserId = p.PostedByUserId,
+                    PostedByUser = p.PostedByUser,
+                    CreatedOn = p.CreatedOn
+                })
+                .ToList();
+
+            var postsAsList = new AllPostsViewModel()
+            {
+                Posts = posts
+            };
+
+            return postsAsList;
         }
 
         private string UploadFile(PostFormModel input)

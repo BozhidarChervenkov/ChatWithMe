@@ -6,14 +6,18 @@
 
 <form method="post" enctype="multipart/form-data" asp-controller="Posts" asp-action="Create" class="col-md-8 offset-2">
 
-    <h3 class="text-center mb-5 mt-5">Create a post which everyone can see:</h3>
+    <h3 class="text-center mb-5 mt-2">Create a post which everyone can see:</h3>
     <hr>
 
     <div asp-validation-summary="ModelOnly" />
-
+    <div class="form-group">
+        <label asp-for="TextTitle"></label>
+        <textarea asp-for="TextTitle" class="form-control" placeholder="Type your post title here..." rows="1"></textarea>
+        <span asp-validation-for="TextTitle" class="text-danger" />
+    </div>
     <div class="form-group">
         <label asp-for="TextContent"></label>
-        <textarea asp-for="TextContent" class="form-control" placeholder="Type your post description here..."></textarea>
+        <textarea asp-for="TextContent" class="form-control" placeholder="Type your post description here..." rows="3"></textarea>
         <span asp-validation-for="TextContent" class="text-danger" />
     </div>
     <div class="custom-file">

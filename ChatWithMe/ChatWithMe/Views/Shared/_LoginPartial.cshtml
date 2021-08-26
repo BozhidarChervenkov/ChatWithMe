@@ -5,6 +5,7 @@
 @{
     var IsUserMale = false;
     var IsUserFemale = false;
+    var IsUserUnspecified = false;
 
     if (SignInManager.IsSignedIn(User))
     {
@@ -17,6 +18,10 @@
         else if (user.Gender == "Female")
         {
             IsUserFemale = true;
+        }
+        else
+        {
+            IsUserUnspecified = true;
         }
     }
  }
@@ -31,11 +36,15 @@
             @user.FirstName @user.LastName
             @if (IsUserMale)
             {
-                <img src="~/images/maleUserIcon.jpg" style="width:30px; height:25px;">
+                <img src="~/Images/maleUserIcon.jpg" style="width:30px; height:25px;">
             }
-            else if(IsUserFemale)
+            else if (IsUserFemale)
             {
-                <img src="~/images/femaleUserIcon.jpg" style="width:30px; height:25px;">
+                <img src="~/Images/femaleUserIcon.jpg" style="width:30px; height:25px;">
+            }
+            else if (IsUserUnspecified)
+            {
+                <img src="~/Images/unspecifiedUserIcon.jpg" style="width:30px; height:25px;">
             }
         </a>
     </li>

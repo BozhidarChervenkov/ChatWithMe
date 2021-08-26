@@ -12,6 +12,12 @@
         public int Id { get; set; }
 
         [Required]
+        [DisplayName("Post Title")]
+        [MinLength(PostTitleContentMinLength)]
+        [MaxLength(PostTitleContentMaxLength)]
+        public string TextTitle { get; set; }
+
+        [Required]
         [DisplayName("Post Content")]
         [MinLength(PostTextContentMinLength)]
         [MaxLength(PostTextContentMaxLength)]

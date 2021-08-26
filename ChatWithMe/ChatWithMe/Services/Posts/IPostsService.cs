@@ -7,5 +7,7 @@
     public interface IPostsService
     {
          Task<bool> Create(PostFormModel input, string userId);
+
+         AllPostsViewModel All();
     }
 }
