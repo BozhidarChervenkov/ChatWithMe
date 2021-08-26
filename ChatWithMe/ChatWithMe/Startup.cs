@@ -9,6 +9,7 @@ namespace ChatWithMe
 
     using ChatWithMe.Data;
     using ChatWithMe.Models;
+    using ChatWithMe.Services.Posts;
 
     public class Startup
     {
@@ -39,6 +40,8 @@ namespace ChatWithMe
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IPostsService, PostsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -441,3 +441,4 @@ D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Areas\Id
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Posts\Create.cshtml.g.cs
