@@ -40,9 +40,10 @@
         }
 
         [HttpGet]
-        public IActionResult All()
+        public async Task<IActionResult> All()
         {
-            var postsAsList = this.postsService.All();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var postsAsList = await this.postsService.All(userId);
 
             return this.View(postsAsList);
         }

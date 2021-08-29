@@ -1,8 +1,6 @@
-﻿namespace ChatWithMe.Models
+﻿namespace ChatWithMe.ViewModels.Home
 {
-    using Microsoft.AspNetCore.Identity;
-
-    public class ApplicationUser : IdentityUser
+    public class UserInListViewModel
     {
         public string FirstName { get; set; }
 

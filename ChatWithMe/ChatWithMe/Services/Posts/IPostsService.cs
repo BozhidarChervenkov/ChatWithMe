@@ -8,6 +8,6 @@
     {
          Task<bool> Create(PostFormModel input, string userId);
 
-         AllPostsViewModel All();
+         Task<AllPostsViewModel> All(string userId);
     }
 }

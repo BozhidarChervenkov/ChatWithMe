@@ -9,16 +9,19 @@
     using ChatWithMe.Models;
     using ChatWithMe.ViewModels.Posts;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
 
     public class PostsService : IPostsService
     {
         private readonly ApplicationDbContext context;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public PostsService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public PostsService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager)
         {
             this.context = context;
             this.webHostEnvironment = webHostEnvironment;
+            this.userManager = userManager;
         }
 
         public async Task<bool> Create(PostFormModel input, string userId)
@@ -41,7 +44,7 @@
             return true;
         }
         
-        public AllPostsViewModel All()
+        public async Task<AllPostsViewModel> All(string userId)
         {
             var posts = this.context.Posts
                 .Where(p=> p.IsDeleted == false)
@@ -57,9 +60,12 @@
                 })
                 .ToList();
 
+            var user = await this.userManager.FindByIdAsync(userId);
+
             var postsAsList = new AllPostsViewModel()
             {
-                Posts = posts
+                Posts = posts,
+                CustomPofilePicture = user.CustomPofilePicture
             };
 
             return postsAsList;

@@ -1,12 +1,50 @@
-﻿@{
+﻿@model UsersListViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center mt-2">
     <div class="jumbotron offset-1 col-10">
         <h2 class="display-4">Welcome to ChatWithMe!</h2>
-        <p class="lead mt-3">Connect with the world and share with friends!</p>
+        <p class="lead">Connect with the world and share with friends!</p>
     </div>
 </div>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <hr>
+    <div class="text-center mt-1 mb-1">
+        <h4 class="text-center mb-3 ">Login to see the available users:</h4>
+        <a class="btn btn-dark btn-lg text-center" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+    </div>
+    <div class="text-center">
+        <img src="~/Images/availableUsers.jpg" class="rounded border border-primary" style="width:350px; height:180px" />
+    </div>
+    <hr>
+}
+else
+{
+    <h4 class="text-center">Users to start a friendship with:</h4>
+    <hr>
+    <div class="row mt-4 mb-4">
+        @foreach (var user in Model.UsersList)
+        {
+
+            <div class="card mt-2 mr-3 border-info bo" style="width: 18rem;">
+                <img class="card-img-top" src="@user.CustomPofilePicture" style="width:286px; height:230px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@user.FirstName @user.LastName</h5>
+                    <p class="card-text">Gender: @user.Gender</p>
+                    <div class="text-center">
+                        <button class="btn btn-info">Send friend request</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr>
+}
 
 
