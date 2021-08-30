@@ -18,6 +18,8 @@
 
         public string PostImage { get; set; }
 
+        public string CustomPofilePicture { get; set; }
+
         public DateTime CreatedOn { get; set; }
     }
 }

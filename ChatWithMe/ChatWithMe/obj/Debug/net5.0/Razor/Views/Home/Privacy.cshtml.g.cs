@@ -40,8 +40,15 @@ using ChatWithMe.ViewModels.Posts;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\Views\_ViewImports.cshtml"
+using ChatWithMe.ViewModels.Profiles;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8ddb6bffa5a9b264bf8f89038bf03c234083fd3", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"44d59699b5ab244a80d96676de18d14d1777269e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8b9e8b4721bf561121ab806417380a2e9000dd96", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

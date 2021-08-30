@@ -54,6 +54,7 @@
                     TextTitle = p.TextTitle,
                     TextContent = p.TextContent,
                     PostImage = p.PostImage,
+                    CustomPofilePicture = p.PostedByUser.CustomPofilePicture,
                     PostedByUserId = p.PostedByUserId,
                     PostedByUser = p.PostedByUser,
                     CreatedOn = p.CreatedOn
@@ -64,8 +65,7 @@
 
             var postsAsList = new AllPostsViewModel()
             {
-                Posts = posts,
-                CustomPofilePicture = user.CustomPofilePicture
+                Posts = posts
             };
 
             return postsAsList;

@@ -83,7 +83,8 @@
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { FirstName = Input.FirstName, LastName = Input.LastName, Gender = Input.Gender, UserName = Input.Email, Email = Input.Email };
+                // Added default custom profile picture
+                var user = new ApplicationUser { FirstName = Input.FirstName, LastName = Input.LastName, Gender = Input.Gender, UserName = Input.Email, Email = Input.Email, CustomPofilePicture = "https://i1.sndcdn.com/avatars-000437232558-yuo0mv-t500x500.jpg" };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
