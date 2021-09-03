@@ -16,6 +16,8 @@
 
         public string FromUserProfileImage { get; set; }
 
+        public string CurrentUserId { get; set; }
+
         public ApplicationUser FromUser { get; set; }
 
         public DateTime CreatedOn { get; set; }

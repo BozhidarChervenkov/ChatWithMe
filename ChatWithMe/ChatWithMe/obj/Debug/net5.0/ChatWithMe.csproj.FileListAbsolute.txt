@@ -446,3 +446,4 @@ D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Po
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Profiles\Mine.cshtml.g.cs
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Profiles\ById.cshtml.g.cs
 D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Profiles\SeeFriendRequests.cshtml.g.cs
+D:\Web Projects\ChatWithMe\ChatWithMe\ChatWithMe\obj\Debug\net5.0\Razor\Views\Profiles\BecomeFriends.cshtml.g.cs

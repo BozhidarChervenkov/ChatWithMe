@@ -48,6 +48,16 @@
 
         [Authorize]
         [HttpGet]
+        public IActionResult SeeFriendRequests(string idOfWantedUser)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewModel = this.profilesService.FriendRequests(currentUserId, idOfWantedUser);
+
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> SendFriendRequest(string idOfWantedUser)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -63,9 +73,9 @@
 
         [Authorize]
         [HttpGet]
-        public IActionResult SeeFriendRequests(string id)
+        public async Task<IActionResult> BecomeFriends(int friendRequestId)
         {
-            var viewModel = this.profilesService.FriendRequests(id);
+            var viewModel = await this.profilesService.BecomeFriends(friendRequestId);
 
             return this.View(viewModel);
         }

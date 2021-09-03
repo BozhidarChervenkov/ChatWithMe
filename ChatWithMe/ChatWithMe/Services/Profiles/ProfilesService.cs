@@ -71,6 +71,30 @@
             return viewModel;
         }
 
+        public FriendRequestListViewModel FriendRequests(string currentUserId, string idOfWantedUser)
+        {
+            var databaseFriendRequests = this.context.FriendRequests
+                .Where(u => u.ToUserId == idOfWantedUser)
+                .Select(fr => new FriendRequestViewModel
+                {
+                    Id = fr.Id,
+                    FromUserId = fr.FromUserId,
+                    FromUserFirstName = fr.FromUser.FirstName,
+                    FromUserLastName = fr.FromUser.LastName,
+                    FromUserProfileImage = fr.FromUser.CustomPofilePicture,
+                    CurrentUserId = currentUserId,
+                    CreatedOn = fr.CreatedOn
+                })
+                .ToList();
+
+            var viewModel = new FriendRequestListViewModel
+            {
+                FriendRequests = databaseFriendRequests
+            };
+
+            return viewModel;
+        }
+
         public async Task<bool> AddFriendRequest(string currentUserId, string idOfWantedUser)
         {
             var senderUser = this.context.Users.FirstOrDefault(u => u.Id == currentUserId);
@@ -96,24 +120,22 @@
             return true;
         }
 
-        public FriendRequestListViewModel FriendRequests(string id)
+        public async Task<BecomeFriendsViewModel> BecomeFriends(int friendRequestId)
         {
-            var databaseFriendRequests = this.context.FriendRequests
-                .Where(u=>u.ToUserId == id)
-                .Select(fr => new FriendRequestViewModel
-                {
-                    Id = fr.Id,
-                    FromUserId = fr.FromUserId,
-                    FromUserFirstName = fr.FromUser.FirstName,
-                    FromUserLastName = fr.FromUser.LastName,
-                    FromUserProfileImage = fr.FromUser.CustomPofilePicture,
-                    CreatedOn = fr.CreatedOn
-                })
-                .ToList();
+            var friendRequest = this.context.FriendRequests.FirstOrDefault(fr => fr.Id == friendRequestId);
 
-            var viewModel = new FriendRequestListViewModel
+            var firstUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.FromUserId);
+            var secondUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.ToUserId);
+
+            firstUser.Friends.Add(new Friend { ApplicationUserId = secondUser.Id, ApplicationUser = secondUser });
+            secondUser.Friends.Add(new Friend { ApplicationUserId = firstUser.Id, ApplicationUser = firstUser });
+
+            await this.context.SaveChangesAsync();
+
+            var viewModel = new BecomeFriendsViewModel
             {
-                FriendRequests = databaseFriendRequests
+                FirstFriend = firstUser,
+                SecondFriend= secondUser
             };
 
             return viewModel;

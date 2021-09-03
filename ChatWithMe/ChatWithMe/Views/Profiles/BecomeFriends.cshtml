@@ -1,0 +1,23 @@
+﻿@model BecomeFriendsViewModel
+
+@{
+    ViewData["Title"] = $"Successfull friendship";
+}
+
+<h2 class="text-center">@ViewData["Title"]!</h2>
+
+<hr>
+<h4 class="text-center text-success">
+    Users: @Model.FirstFriend.FirstName @Model.FirstFriend.LastName
+    and @Model.SecondFriend.FirstName @Model.SecondFriend.LastName are now friends!
+</h4>
+<div class="row mt-5 mb-2 justify-content-center">
+    <img src="@Model.FirstFriend.CustomPofilePicture" style="width:350px; height:350px;" class="rounded border border-dark" />
+    <img src="~/Images/friends.jpg" style="width:170px; height:180px;" class="ml-4 mr-4 mt-4 rounded border border-dark" />
+    <img src="@Model.SecondFriend.CustomPofilePicture" style="width: 350px; height: 350px;" class="rounded border border-dark" />
+</div>
+<div class="text-center">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-success">Home</a>
+</div>
+
+<hr>

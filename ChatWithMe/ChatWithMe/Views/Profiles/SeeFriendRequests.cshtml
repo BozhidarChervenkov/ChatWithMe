@@ -23,10 +23,14 @@
         {
             <tbody>
                 <tr>
-                    <th scope="row"><img src="@friendRequest.FromUserProfileImage" style="width:60px; height:40px;"/></th>
+                    <th scope="row"><img src="@friendRequest.FromUserProfileImage" style="width:60px; height:40px;" /></th>
                     <td>@friendRequest.FromUserFirstName</td>
                     <td>@friendRequest.FromUserLastName</td>
                     <td>@friendRequest.CreatedOn</td>
+                    <td>
+                        <a asp-controller="Profiles" asp-action="ById" asp-route-id="@friendRequest.CurrentUserId" class="btn btn-sm btn-info">View Profile</a>
+                        <a asp-controller="Profiles" asp-action="BecomeFriends" asp-route-friendRequestId="@friendRequest.Id" class="btn btn-sm btn-success">Accept Request</a>
+                    </td>
                 </tr>
             </tbody>
         }

@@ -15,7 +15,7 @@
             <p class="text-center"><strong>Total Friends:</strong> @Model.Friends.Count()</p>
             <p class="text-center"><strong>Total friend requests:</strong> @Model.FriendRequests.Count()</p>
             <div class="text-center">
-                <a asp-controller="Profiles" asp-action="SeeFriendRequests" asp-route-id="@Model.Id" class="btn btn-info">See friend requests</a>
+                <a asp-controller="Profiles" asp-action="SeeFriendRequests" asp-route-idOfWantedUser="@Model.Id" class="btn btn-info">See friend requests</a>
             </div>
         </div>
     </div>

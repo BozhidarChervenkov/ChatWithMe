@@ -11,6 +11,9 @@
         ProfileViewModel ProfileById(string otherUserId, string currentUserId);
 
         Task<bool> AddFriendRequest(string currentUserId, string idOfWantedUser);
-        FriendRequestListViewModel FriendRequests(string id);
+
+        FriendRequestListViewModel FriendRequests(string currentUserId, string idOfWantedUser);
+
+        Task<BecomeFriendsViewModel> BecomeFriends(int friendRequestId);
     }
 }
