@@ -42,7 +42,7 @@ else
                     <h5 class="card-title">@user.FirstName @user.LastName</h5>
                     <p class="card-text">Gender: @user.Gender</p>
                     <div class="text-center">
-                        <button asp-controller="Profiles" asp-action="" class="btn btn-info">See profile</button>
+                        <a asp-controller="Profiles" asp-action="ById" asp-route-id="@user.Id" class="btn btn-info">See profile</a>
                     </div>
                 </div>
             </div>

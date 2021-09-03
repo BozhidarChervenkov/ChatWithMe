@@ -16,14 +16,15 @@
 
         public DbSet<Friend> Friends { get; set; }
 
-        public DbSet<FriendRequestFromUser> FriendRequestsFromUsers { get; set; }
-
-        public DbSet<FriendRequestToUser> friendRequestsToUsers { get; set; }
-
+        public DbSet<FriendRequest> FriendRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(u => u.FriendRequests)
+                .WithOne(fr => fr.FromUser);
         }
     }
 }

@@ -1,15 +1,14 @@
 ﻿namespace ChatWithMe.Models
 {
-    using Microsoft.AspNetCore.Identity;
     using System.Collections.Generic;
+    using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser
     {
         public ApplicationUser()
         {
             this.Friends = new HashSet<Friend>();
-            this.FriendRequestsFromUser = new HashSet<FriendRequestFromUser>();
-            this.FriendRequestsToUser = new HashSet<FriendRequestToUser>();
+            this.FriendRequests = new HashSet<FriendRequest>();
         }
 
         public string FirstName { get; set; }
@@ -22,8 +21,6 @@
 
         public ICollection<Friend> Friends { get; set; }
 
-        public ICollection<FriendRequestFromUser> FriendRequestsFromUser { get; set; }
-
-        public ICollection<FriendRequestToUser> FriendRequestsToUser { get; set; }
+        public ICollection<FriendRequest> FriendRequests { get; set; }
     }
 }

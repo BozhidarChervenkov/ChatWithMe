@@ -4,14 +4,16 @@ using ChatWithMe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChatWithMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210903075434_ChangeTableName")]
+    partial class ChangeTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,7 +121,7 @@ namespace ChatWithMe.Migrations
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("ChatWithMe.Models.FriendRequest", b =>
+            modelBuilder.Entity("ChatWithMe.Models.FriendRequestFromUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,19 +131,40 @@ namespace ChatWithMe.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FromUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.ToTable("FriendRequestsFromUsers");
+                });
+
+            modelBuilder.Entity("ChatWithMe.Models.FriendRequestToUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ToUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromUserId");
-
                     b.HasIndex("ToUserId");
 
-                    b.ToTable("FriendRequests");
+                    b.ToTable("FriendRequestsToUsers");
                 });
 
             modelBuilder.Entity("ChatWithMe.Models.Post", b =>
@@ -325,17 +348,20 @@ namespace ChatWithMe.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
-            modelBuilder.Entity("ChatWithMe.Models.FriendRequest", b =>
+            modelBuilder.Entity("ChatWithMe.Models.FriendRequestFromUser", b =>
                 {
                     b.HasOne("ChatWithMe.Models.ApplicationUser", "FromUser")
-                        .WithMany("FriendRequests")
+                        .WithMany("FriendRequestsFromUser")
                         .HasForeignKey("FromUserId");
 
-                    b.HasOne("ChatWithMe.Models.ApplicationUser", "ToUser")
-                        .WithMany()
-                        .HasForeignKey("ToUserId");
-
                     b.Navigation("FromUser");
+                });
+
+            modelBuilder.Entity("ChatWithMe.Models.FriendRequestToUser", b =>
+                {
+                    b.HasOne("ChatWithMe.Models.ApplicationUser", "ToUser")
+                        .WithMany("FriendRequestsToUser")
+                        .HasForeignKey("ToUserId");
 
                     b.Navigation("ToUser");
                 });
@@ -404,7 +430,9 @@ namespace ChatWithMe.Migrations
 
             modelBuilder.Entity("ChatWithMe.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("FriendRequests");
+                    b.Navigation("FriendRequestsFromUser");
+
+                    b.Navigation("FriendRequestsToUser");
 
                     b.Navigation("Friends");
                 });

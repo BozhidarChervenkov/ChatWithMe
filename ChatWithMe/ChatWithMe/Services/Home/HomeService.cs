@@ -20,6 +20,7 @@
             {
                 usersInList.UsersList.Add(new UserInListViewModel
                 {
+                    Id = user.Id,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Gender = user.Gender,

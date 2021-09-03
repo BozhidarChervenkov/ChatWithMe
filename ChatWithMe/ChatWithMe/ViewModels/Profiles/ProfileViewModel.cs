@@ -1,10 +1,13 @@
 ﻿namespace ChatWithMe.ViewModels.Profiles
 {
-    using ChatWithMe.Models;
     using System.Collections.Generic;
 
-    public class MyProfileViewModel
+    using ChatWithMe.Models;
+
+    public class ProfileViewModel
     {
+        public string Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,8 +18,6 @@
 
         public ICollection<Friend> Friends { get; set; }
 
-        public ICollection<FriendRequestFromUser> FriendRequestsFromUsers { get; set; }
-
-        public ICollection<FriendRequestToUser> FriendRequestToUsers { get; set; }
+        public ICollection<FriendRequest> FriendRequests { get; set; }
     }
 }
