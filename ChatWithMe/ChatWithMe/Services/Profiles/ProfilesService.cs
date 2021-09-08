@@ -23,7 +23,7 @@
 
             var viewModel = new ProfileViewModel();
 
-            var friends = this.context.Friends.Where(f=>f.ApplicationUserId == userId).ToList();
+            var friends = this.context.Friends.Where(f=>f.UserFriendId == userId).ToList();
 
             if (user != null)
             {
@@ -53,6 +53,10 @@
 
             var viewModel = new ProfileViewModel();
 
+            var otherUserFriends = this.context.Friends.Where(f => f.ApplicationUserId == otherUserId).ToList();
+            var varUserFriends = this.context.Friends.Where(f => f.ApplicationUserId == currentUserId);
+            var isUserFriend = varUserFriends.Any(f => f.UserFriendId == otherUserId);
+
             if (otherUser != null)
             {
                 viewModel = new ProfileViewModel
@@ -62,7 +66,8 @@
                     LastName = otherUser.LastName,
                     Gender = otherUser.Gender,
                     CustomPofilePicture = otherUser.CustomPofilePicture,
-                    Friends = otherUser.Friends
+                    Friends = otherUserFriends,
+                    IsUserFriend = isUserFriend
                 };
             }
             else
@@ -130,8 +135,8 @@
             var firstUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.FromUserId);
             var secondUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.ToUserId);
 
-            firstUser.Friends.Add(new Friend { ApplicationUserId = secondUser.Id, FirstName = secondUser.FirstName, LastName = secondUser.LastName });
-            secondUser.Friends.Add(new Friend { ApplicationUserId = firstUser.Id, FirstName =firstUser.FirstName, LastName = firstUser.LastName });
+            firstUser.Friends.Add(new Friend { UserFriendId = secondUser.Id, FirstName = secondUser.FirstName, LastName = secondUser.LastName, ApplicationUserId = firstUser.Id });
+            secondUser.Friends.Add(new Friend { UserFriendId = firstUser.Id, FirstName =firstUser.FirstName, LastName = firstUser.LastName, ApplicationUserId = secondUser.Id });
 
             await this.context.SaveChangesAsync();
 

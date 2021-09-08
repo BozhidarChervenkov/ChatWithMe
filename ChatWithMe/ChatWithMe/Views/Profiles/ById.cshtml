@@ -13,9 +13,12 @@
         <div class="mt-3 id=" ProfilePictureContainer"">
             <p class="text-center"><strong>Gender:</strong> @Model.Gender</p>
             <p class="text-center"><strong>Total Friends:</strong> @Model.Friends.Count()</p>
-            <div class="text-center">
-                <a asp-controller="Profiles" asp-action="SendFriendRequest" asp-route-idOfWantedUser="@Model.Id" class="btn btn-info text-center">Send friend request</a>
-            </div>
+            @if (Model.IsUserFriend == false)
+            {
+                <div class="text-center">
+                    <a asp-controller="Profiles" asp-action="SendFriendRequest" asp-route-idOfWantedUser="@Model.Id" class="btn btn-info text-center">Send friend request</a>
+                </div>
+            }
         </div>
     </div>
 </div>

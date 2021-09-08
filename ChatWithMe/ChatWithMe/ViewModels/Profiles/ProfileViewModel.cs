@@ -16,6 +16,8 @@
 
         public string CustomPofilePicture { get; set; }
 
+        public bool IsUserFriend { get; set; }
+
         public ICollection<Friend> Friends { get; set; }
 
         public ICollection<FriendRequest> FriendRequests { get; set; }
