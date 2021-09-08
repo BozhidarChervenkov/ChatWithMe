@@ -132,6 +132,9 @@ namespace ChatWithMe.Migrations
                     b.Property<string>("FromUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ToUserId")
                         .HasColumnType("nvarchar(450)");
 

@@ -1,6 +1,7 @@
 ﻿namespace ChatWithMe.Controllers
 {
     using System.Diagnostics;
+    using System.Security.Claims;
     using Microsoft.AspNetCore.Mvc;
 
     using ChatWithMe.Models;
@@ -17,7 +18,8 @@
 
         public IActionResult Index()
         {
-            var viewModel = this.homeService.Users();
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var viewModel = this.homeService.Users(currentUserId);
 
             return this.View(viewModel);
         }

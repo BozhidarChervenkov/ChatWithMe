@@ -24,7 +24,11 @@
 
             builder.Entity<ApplicationUser>()
                 .HasMany(u => u.FriendRequests)
-                .WithOne(fr => fr.FromUser);
+                .WithOne(fr => fr.ToUser);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(u => u.Friends)
+                .WithOne(f => f.ApplicationUser);
         }
     }
 }

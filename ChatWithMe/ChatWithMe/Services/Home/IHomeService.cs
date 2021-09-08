@@ -4,6 +4,6 @@
 
     public interface IHomeService
     {
-        UsersListViewModel Users();
+        UsersListViewModel Users(string currentUserId);
     }
 }

@@ -23,6 +23,8 @@
 
             var viewModel = new ProfileViewModel();
 
+            var friends = this.context.Friends.Where(f=>f.ApplicationUserId == userId).ToList();
+
             if (user != null)
             {
                 viewModel = new ProfileViewModel
@@ -32,7 +34,7 @@
                     LastName = user.LastName,
                     Gender = user.Gender,
                     CustomPofilePicture = user.CustomPofilePicture,
-                    Friends = user.Friends,
+                    Friends = friends,
                     FriendRequests = user.FriendRequests
                 };
             }
@@ -74,7 +76,7 @@
         public FriendRequestListViewModel FriendRequests(string currentUserId, string idOfWantedUser)
         {
             var databaseFriendRequests = this.context.FriendRequests
-                .Where(u => u.ToUserId == idOfWantedUser)
+                .Where(fr => fr.ToUserId == idOfWantedUser && fr.IsDeleted == false)
                 .Select(fr => new FriendRequestViewModel
                 {
                     Id = fr.Id,
@@ -123,12 +125,13 @@
         public async Task<BecomeFriendsViewModel> BecomeFriends(int friendRequestId)
         {
             var friendRequest = this.context.FriendRequests.FirstOrDefault(fr => fr.Id == friendRequestId);
+            friendRequest.IsDeleted = true;
 
             var firstUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.FromUserId);
             var secondUser = this.context.Users.FirstOrDefault(u => u.Id == friendRequest.ToUserId);
 
-            firstUser.Friends.Add(new Friend { ApplicationUserId = secondUser.Id, ApplicationUser = secondUser });
-            secondUser.Friends.Add(new Friend { ApplicationUserId = firstUser.Id, ApplicationUser = firstUser });
+            firstUser.Friends.Add(new Friend { ApplicationUserId = secondUser.Id, FirstName = secondUser.FirstName, LastName = secondUser.LastName });
+            secondUser.Friends.Add(new Friend { ApplicationUserId = firstUser.Id, FirstName =firstUser.FirstName, LastName = firstUser.LastName });
 
             await this.context.SaveChangesAsync();
 
