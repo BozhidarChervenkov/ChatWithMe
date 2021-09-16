@@ -23,7 +23,7 @@
 
             var viewModel = new ProfileViewModel();
 
-            var friends = this.context.Friends.Where(f=>f.UserFriendId == userId).ToList();
+            var friends = this.context.Friends.Where(f=>f.UserFriendId == userId && f.UserFriendId != userId).ToList();
 
             if (user != null)
             {
