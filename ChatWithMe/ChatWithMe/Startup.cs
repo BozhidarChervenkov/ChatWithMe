@@ -8,10 +8,12 @@ namespace ChatWithMe
     using Microsoft.Extensions.Hosting;
 
     using ChatWithMe.Data;
+    using ChatWithMe.Hubs;
     using ChatWithMe.Models;
     using ChatWithMe.Services.Posts;
     using ChatWithMe.Services.Home;
     using ChatWithMe.Services.Profiles;
+    using ChatWithMe.Services.Chats;
 
     public class Startup
     {
@@ -42,9 +44,11 @@ namespace ChatWithMe
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+            services.AddSignalR();
 
             services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<IChatsService, ChatsService>();
             services.AddTransient<IProfilesService, ProfilesService>();
         }
 
@@ -71,6 +75,7 @@ namespace ChatWithMe
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/chat");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
